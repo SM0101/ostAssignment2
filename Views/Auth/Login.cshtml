@@ -11,6 +11,25 @@
     <title>Login</title>
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
     <script src="~/Scripts/bootstrap.min.js"></script>
+    @{
+        string sessionUser = "";
+        if (Session["UserName"] != null)
+        {
+            sessionUser = Session["UserName"].ToString();
+
+        }
+    }
+    <script>
+        var user = '@sessionUser'
+        if (user != '') {
+            window.location.href = @Url.Action("Index", "Home");;
+            console.log(user);
+        }
+        else {
+            alert("Login Failed!");
+            window.location.href = @Url.Action("Login", "Auth");
+    }
+    </script>
 </head>
 <body>
     <div id="dvLoginWrapper" style="position:absolute;left:0px;right:0px;top:0px;bottom:0px;margin:auto;height:500px;width:400px;">

@@ -10,8 +10,17 @@
     <title>Password Reset</title>
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
     <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
+    @if(ViewBag.Message != null)
+    {
+        <script type="text/javascript">
+            //$(document).ready(function() {
+                alert('@ViewBag.Message');
+            //});
+        </script>
+    }
     <div id="dvLoginWrapper" style="position:absolute;left:0px;right:0px;top:0px;bottom:0px;margin:auto;height:500px;width:400px;">
         <div id="dvLogin" style="position:absolute;left:0px;right:0px;top:0px;bottom:0px;margin:auto;height:300px;width:90%;">
             <form method="post" @Url.Action("ForgetPass", "Auth")>

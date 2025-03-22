@@ -6,6 +6,27 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    @{ 
+        string sessionUser = "";
+        if (Session["UserName"] != null)
+        {
+            sessionUser = Session["UserName"].ToString();
+        }
+        else
+        {
+            Response.Redirect(Url.Action("Login", "Auth"));
+        }
+     }
+<script>
+        var user = '@sessionUser'
+        if (user != '') {
+            window.location.href = @Url.Action("Index", "Home");
+        }
+        else {
+            alert("Login Failed!");
+            window.location.href = @Url.Action("Login", "Auth");
+        }
+</script>
 </head>
 <body>
     <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
