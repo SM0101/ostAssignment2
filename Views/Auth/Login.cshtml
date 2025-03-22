@@ -1,0 +1,39 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Scripts/bootstrap.min.js"></script>
+</head>
+<body>
+    <div id="dvLoginWrapper" style="position:absolute;left:0px;right:0px;top:0px;bottom:0px;margin:auto;height:500px;width:400px;">
+        <div id="dvLogin" style="position:absolute;left:0px;right:0px;top:0px;bottom:0px;margin:auto;height:300px;width:90%;">
+            <form method="post" @Url.Action("Login", "Auth")>
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Login</h5>
+                        <div class="mb-3">
+                            <label for="exampleFormControlUserName" class="form-label">User Name</label>
+                            <input type="text" name="txtUserNm" class="form-control" id="exampleFormControlUserName" placeholder="User Name">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleFormControlPassword" class="form-label">Password</label>
+                            <input type="password" name="txtPassword" class="form-control" id="exampleFormControlPassword" placeholder="Password">
+                        </div>
+                        <input type="submit" class="btn btn-primary" value="Login" />
+                        <br />
+                        <a href="@Url.Action("ForgetPass", "Auth")" class="btn btn-link">Forgot Password?</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
