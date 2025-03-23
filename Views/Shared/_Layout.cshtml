@@ -18,14 +18,14 @@
         }
      }
 <script>
-        var user = '@sessionUser'
+        @*var user = '@sessionUser'
         if (user != '') {
             window.location.href = @Url.Action("Index", "Home");
         }
         else {
             alert("Login Failed!");
             window.location.href = @Url.Action("Login", "Auth");
-        }
+        }*@
 </script>
 </head>
 <body>

@@ -36,22 +36,22 @@ namespace OstadAssignment2.Controllers
         }
 
         [HttpPost]
-        public ActionResult ForgetPass(string txtUserName, string txtNewPassword, string txtConfirmPassword)
+        public ActionResult ForgetPass(string txtUserNm, string txtNewPassword, string txtConfirmPassword)
         {
             LoginUser login = new LoginUser();
-            if (!login.ValidateUserExist(txtUserName))
+            if (!login.ValidateUserExist(txtUserNm))
             {
-                ViewBag.Message = "User name doesn't exist!";
+                ViewBag.Message = "User is not valid!";
                 return View();
             }
             else if (txtNewPassword != txtConfirmPassword)
             {
-                ViewBag.Message = "Confirm Password did'nt match";
+                ViewBag.Message = "Confirm Password did not match";
                 return View();
             }
             else
             {
-                login.UpdatePassword(txtUserName, txtNewPassword);
+                login.UpdatePassword(txtUserNm, txtNewPassword);
                 ViewBag.Message = "Password Updated";
                 return RedirectToAction("Login");
             }

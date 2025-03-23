@@ -40,20 +40,25 @@ namespace OstadAssignment2.Models
         {
             string conn = ConfigurationManager.ConnectionStrings["connection"].ConnectionString;
 
-            SqlConnection sqlConnection = new SqlConnection(conn);
-            sqlConnection.Open();
-            SqlCommand sqlCommand = new SqlCommand("SELECT * FROM Users WHERE UserName = @UserName", sqlConnection);
-            sqlCommand.Parameters.Clear();
-            sqlCommand.Parameters.AddWithValue("@UserName", userName);
-            SqlDataReader reader = sqlCommand.ExecuteReader();
-            if (reader.HasRows)
+            using (SqlConnection sqlConnection = new SqlConnection(conn))
             {
-                while (reader.Read())
+                sqlConnection.Open();
+                using (SqlCommand sqlCommand = new SqlCommand("SELECT * FROM Users WHERE UserName = @UserName", sqlConnection))
                 {
-                    UserName = reader["UserName"].ToString();
-                }
+                    sqlCommand.Parameters.AddWithValue("@UserName", userName);
+                    using (SqlDataReader reader = sqlCommand.ExecuteReader())
+                    {
+                        if (reader.HasRows)
+                        {
+                            while (reader.Read())
+                            {
+                                UserName = reader["UserName"].ToString();
+                            }
 
-                return true;
+                            return true;
+                        }
+                    }
+                }
             }
             return false;
         }
